@@ -18,8 +18,11 @@ import Animated, {
   useSharedValue,
   withSequence,
   withTiming,
+  interpolate,
+  Easing,
 } from "react-native-reanimated";
 // withSequence - for defined a value sequence
+// we too can work with interpolation of numbers
 
 interface Params {
   id: string;
@@ -105,12 +108,23 @@ export function Quiz() {
 
   function shakeAnimation() {
     // will be called when the user err a question
-    shake.value = withSequence(withTiming(10), withTiming(0));
+    shake.value = withSequence(
+      withTiming(3, { duration: 400, easing: Easing.bounce }),
+      withTiming(0)
+    );
   }
 
   const shakeStyleAnimated = useAnimatedStyle(() => {
     return {
-      transform: [{ translateX: shake.value }],
+      transform: [
+        {
+          translateX: interpolate(
+            shake.value,
+            [0, 0.5, 1, 1.5, 2, 2.5, 3],
+            [0, -15, 0, 15, 0, -15, 0]
+          ),
+        },
+      ],
     };
   });
 
