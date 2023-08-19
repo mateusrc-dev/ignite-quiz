@@ -20,6 +20,7 @@ import Animated, {
   withTiming,
   interpolate,
   Easing,
+  useAnimatedScrollHandler,
 } from "react-native-reanimated";
 // withSequence - for defined a value sequence
 // we too can work with interpolation of numbers
@@ -40,6 +41,7 @@ export function Quiz() {
   );
 
   const shake = useSharedValue(0);
+  const scrollY = useSharedValue(0);
 
   const { navigate } = useNavigation();
 
@@ -128,6 +130,12 @@ export function Quiz() {
     };
   });
 
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = event.contentOffset.y; // here let's get the position of the scroll view for handler
+    },
+  });
+
   useEffect(() => {
     const quizSelected = QUIZ.filter((item) => item.id === id)[0];
     setQuiz(quizSelected);
@@ -146,9 +154,11 @@ export function Quiz() {
 
   return (
     <View style={styles.container}>
-      <ScrollView
+      <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.question}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16} // to update scroll information more quickly
       >
         <QuizHeader
           title={quiz.title}
@@ -169,7 +179,7 @@ export function Quiz() {
           <OutlineButton title="Parar" onPress={handleStop} />
           <ConfirmButton onPress={handleConfirm} />
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   );
 }
