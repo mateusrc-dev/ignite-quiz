@@ -84,13 +84,13 @@ export function History() {
               }}
               overshootLeft={false} // let's use this property so the item doesn't shoot completely to the left
               containerStyle={styles.swipeableContainer}
+              leftThreshold={10} // setting the threshold to recognize container sliding
+              renderRightActions={() => null} // for not render nothing in right side
+              onSwipeableOpen={() => handleRemove(item.id, index)}
               renderLeftActions={() => (
-                <Pressable
-                  style={styles.swipeableRemove}
-                  onPress={() => handleRemove(item.id, index)}
-                >
+                <View style={styles.swipeableRemove}>
                   <Trash size={32} color={THEME.COLORS.GREY_100} />
-                </Pressable>
+                </View>
               )}
             >
               <HistoryCard data={item} />
