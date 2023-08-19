@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Alert, ScrollView, View } from "react-native";
-
+import { Alert, Text, View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
-
-import { styles } from "./styles";
 
 import { QUIZ } from "../../data/quiz";
 import { historyAdd } from "../../storage/quizHistoryStorage";
+
+import { styles } from "./styles";
+import { THEME } from "../../styles/theme";
 
 import { Loading } from "../../components/Loading";
 import { Question } from "../../components/Question";
@@ -22,6 +22,7 @@ import Animated, {
   Easing,
   useAnimatedScrollHandler,
 } from "react-native-reanimated";
+import { ProgressBar } from "../../components/ProgressBar";
 // withSequence - for defined a value sequence
 // we too can work with interpolation of numbers
 
@@ -136,6 +137,16 @@ export function Quiz() {
     },
   });
 
+  const fixedProgressBarStyles = useAnimatedStyle(() => {
+    return {
+      position: "absolute",
+      paddingTop: 50,
+      backgroundColor: THEME.COLORS.GREY_500,
+      width: "110%",
+      left: "-5%",
+    };
+  });
+
   useEffect(() => {
     const quizSelected = QUIZ.filter((item) => item.id === id)[0];
     setQuiz(quizSelected);
@@ -154,6 +165,15 @@ export function Quiz() {
 
   return (
     <View style={styles.container}>
+      <Animated.View style={fixedProgressBarStyles}>
+        {/*this styles will be animated*/}
+        <Text style={styles.title}>{quiz.title}</Text>
+        <ProgressBar
+          total={quiz.questions.length}
+          current={currentQuestion + 1}
+        />
+      </Animated.View>
+
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.question}
