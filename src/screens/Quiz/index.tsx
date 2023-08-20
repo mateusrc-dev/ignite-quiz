@@ -175,6 +175,7 @@ export function Quiz() {
   });
 
   const onPan = Gesture.Pan()
+    .activateAfterLongPress(200) // for scroll functionality to continue working
     .onUpdate(
       // to detected the dragging motion to the side
       (event) => {
