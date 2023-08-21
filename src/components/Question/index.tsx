@@ -1,6 +1,6 @@
 import { Text, Dimensions } from "react-native";
 // useWindowDimensions - identify if this window of device change
-import Animated, { Keyframe } from "react-native-reanimated";
+import Animated, { Keyframe, runOnJS } from "react-native-reanimated";
 
 import { Option } from "../Option";
 import { styles } from "./styles";
@@ -14,6 +14,7 @@ type Props = {
   question: QuestionProps;
   alternativeSelected?: number | null;
   setAlternativeSelected?: (value: number) => void;
+  onUnmount: () => void;
 };
 
 const SCREEN_WIDTH = Dimensions.get("window").width; // for get the width of screen that change in each device
@@ -22,6 +23,7 @@ export function Question({
   question,
   alternativeSelected,
   setAlternativeSelected,
+  onUnmount,
 }: Props) {
   const enteringKeyframe = new Keyframe({
     0: {
@@ -47,7 +49,12 @@ export function Question({
     <Animated.View
       style={styles.container}
       entering={enteringKeyframe.duration(500)}
-      exiting={exitingKeyframe.duration(500)}
+      exiting={exitingKeyframe.duration(500).withCallback((finished) => {
+        "worklet";
+        if (finished) {
+          runOnJS(onUnmount)();
+        }
+      })}
     >
       <Text style={styles.title}>{question.title}</Text>
 

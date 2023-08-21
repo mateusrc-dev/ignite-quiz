@@ -126,8 +126,14 @@ export function Quiz() {
   function shakeAnimation() {
     // will be called when the user err a question
     shake.value = withSequence(
-      withTiming(3, { duration: 400, easing: Easing.bounce }),
-      withTiming(0)
+      withTiming(3, { duration: 400, easing: Easing.bounce }), // animation run in interface thread of user
+      withTiming(0, undefined, (finished) => {
+        // to await animation finished
+        "worklet"; // because let's used JS
+        if (finished) {
+          runOnJS(handleNextQuestion)();
+        }
+      })
     );
   }
 
@@ -258,6 +264,7 @@ export function Quiz() {
               question={quiz.questions[currentQuestion]}
               alternativeSelected={alternativeSelected}
               setAlternativeSelected={setAlternativeSelected}
+              onUnmount={() => setStatusReply(0)}
             />
           </Animated.View>
         </GestureDetector>
