@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, View, BackHandler } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import * as Haptics from "expo-haptics";
@@ -241,6 +241,15 @@ export function Quiz() {
       handleNextQuestion();
     }
   }, [points]);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleStop
+    ); // 'hardwareBackPress' is the name of physicist button
+
+    return () => backHandler.remove(); // all useEffect with listener is need use return for remove the listener
+  }, []);
 
   if (isLoading) {
     return <Loading />;
