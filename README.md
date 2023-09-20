@@ -7,10 +7,9 @@
   <a href="LICENSE"><img  src="https://img.shields.io/static/v1?label=License&message=MIT&color=8257e5&labelColor=202024" alt="License"></a>
 </p>
 
-
 ## 💻 Projeto
 
-ignitequiz_template
+ignitequiz_template - projeto para aprender mais sobre o react native reanimated
 
 ## 📝 Licença
 
@@ -21,7 +20,6 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 <p align="center">
   Feito com 💜 by Rocketseat
 </p>
-
 
 <!--START_SECTION:footer-->
 
@@ -35,4 +33,3 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 </p>
 
 <!--END_SECTION:footer-->
-

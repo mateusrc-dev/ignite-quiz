@@ -56,6 +56,7 @@ export function Quiz() {
 
   const shake = useSharedValue(0);
   const scrollY = useSharedValue(0);
+  console.log(scrollY);
   const cardPosition = useSharedValue(0);
 
   const { navigate } = useNavigation();
