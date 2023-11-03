@@ -4,21 +4,29 @@
 
 <p align="center">
   <img src="https://img.shields.io/static/v1?label=Rocketseat&message=Education&color=8257e5&labelColor=202024" alt="Rocketseat Project" />
-  <a href="LICENSE"><img  src="https://img.shields.io/static/v1?label=License&message=MIT&color=8257e5&labelColor=202024" alt="License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/static/v1?label=License&message=MIT&color=8257e5&labelColor=202024" alt="License"></a>
 </p>
 
-## 💻 Projeto
+## 💻 Project
 
-ignitequiz_template - projeto para aprender mais sobre o react native reanimated
+#ignitequiz_template - project by rocketseat to learn more about react native reanimated
 
-## 📝 Licença
+### application consists of several quizzes in which the user can test their knowledge
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## In this project we learned about the pillars of react native reanimated and applied them to our components:
+
+- useSharedValue - we let's use for saving content of animations - this content can change with changing of something state
+- useAnimatedStyle - we let's use for creating the animated styles
+- Animated - for become a component in an animated component
+
+## 📝 License
+
+This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
 <p align="center">
-  Feito com 💜 by Rocketseat
+  Made with 💜 by Rocketseat
 </p>
 
 <!--START_SECTION:footer-->
