@@ -19,6 +19,13 @@
 - useAnimatedStyle - we let's use for creating the animated styles
 - Animated - for become a component in an animated component
 
+### The expo-haptics lib was also used to activate device vibration in certain user interactions, in addition to other libs
+
+## steps to test the application on your machine:
+
+- download the repository and use the 'npm run start' command in the terminal within the application's main repository
+- emulate the Android system on your Windows with Android Studio
+
 ## 📝 License
 
 This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.
